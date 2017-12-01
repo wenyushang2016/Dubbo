@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd"
+	default-lazy-init="false">
+
+  <dubbo:application name="demo-provider" owner="programmer" organization="dubbox"></dubbo:application>
+  <!-- zookeeper暴露服务 -->
+  <dubbo:registry address="zookeeper://localhost:2181"/>
+
+   <dubbo:protocol name="dubbo" port="20880"/>
+   
+   <dubbo:service interface="com.alibaba.dubbo.demo.DemoService" ref="demoService" protocol="dubbo"/>
+   <bean id="demoService" class="com.alibaba.dubbo.demo.impl.DemoServiceImpl"></bean>
+  
+</beans>
